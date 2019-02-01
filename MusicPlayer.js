@@ -7,6 +7,8 @@ var fileChooser = document.getElementById('fileInput');
 var songIndex = 0;
 var songID;
 
+document.getElementById('song0').style.color = "cyan";
+
 listItems = document.getElementsByClassName('listItem');
 
 musicPlayer.onended= switchToNextSong;
