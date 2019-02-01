@@ -4,7 +4,7 @@ var currentSong;
 var songChanged = 0;
 var listItems = [];
 var fileChooser = document.getElementById('fileInput');
-var songEnded = 0;
+var songIndex = 0;
 
 listItems = document.getElementsByClassName('listItem');
 
@@ -20,10 +20,18 @@ function addSong()
 
 function switchToNextSong()
 {
-    if(songEnded<=listItems.length)
-        songEnded++;
-    else songEnded =0;
-    musicPlayer.src = listItems[songEnded];
+    var id='song'+songIndex;
+    var s1 =document.getElementById(id);
+    s1.style.color = "black";
+    if(songIndex<listItems.length-1)
+        songIndex++;
+    else songIndex =0;
+    musicPlayer.src = listItems[songIndex];
+    id='song'+songIndex;
+    s2 =document.getElementById(id);
+    s2.style.color = "cyan"
+    console.log('song'+songIndex);
+    
     musicPlayer.play();
 }
 
@@ -55,8 +63,11 @@ function selectSong()
     musicPlayer.src = this.href; //Shorter Statement.
     musicPlayer.play();
     songChanged++;
-    
+    for(i=0;i<listItems.length;i++)
+    {
+        if(musicPlayer.src == listItems[i])
+            songIndex=i;  
+    }
     //console.log(this.innerHTML);
     
 }
-
